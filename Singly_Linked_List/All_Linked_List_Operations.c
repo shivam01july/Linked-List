@@ -1,26 +1,26 @@
 /****************************************************/
-/*                                                  */
-/*          All Singly Linked List Operations       */
-/*    1. Create                                     */
-/*    2. Display                                    */
-/*    2. Insert                                     */
-/*        2.1. Insert Node at Beginning             */
-/*        2.2. Insert Node at End                   */
-/*        2.3. Insert Node at Position              */
-/*        2.4. Insert After a Node                  */
-/*        2.5. Insert Before a Node                 */
-/*    3. Delete                                     */
-/*        3.1. Delete Node                          */
-/*        3.2. Delete Node at Beginning             */      
-/*        3.3. Delete Node at End                   */
-/*        3.4. Delete Node at Position              */
-/*        3.5. Delete After a Node                  */
-/*        3.6. Delete Before a Node                 */
-/*        3.7. Delete All Nodes                     */
-/*    3. Reverse                                    */
-/*    4. Search                                     */
-/*    5. Sort                                       */
-/*                                                  */
+|                                                    |
+|          All Singly Linked List Operations         |
+|    1. Create                                       |
+|    2. Display                                      |
+|    2. Insert                                       |
+|        2.1. Insert Node at Beginning               |
+|        2.2. Insert Node at End                     |
+|        2.3. Insert Node at Position                |
+|        2.4. Insert After a Node                    |
+|        2.5. Insert Before a Node                   |
+|    3. Delete                                       |
+|        3.1. Delete Node                            |
+|        3.2. Delete Node at Beginning               |      
+|        3.3. Delete Node at End                     |
+|        3.4. Delete Node at Position                |
+|        3.5. Delete After a Node                    |
+|        3.6. Delete Before a Node                   |
+|        3.7. Delete All Nodes                       |
+|    3. Reverse                                      |
+|    4. Search                                       |
+|    5. Sort                                         |
+|                                                    |
 /****************************************************/
 
 
@@ -28,12 +28,16 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+
+/* Generic Structure for List */
 typedef struct Node
 {
     int Data;
     struct Node *Link;
 }Node;
 
+
+/* Enum for all Linked List Operations */ 
 typedef enum ListOp
 {
     eExit             = 0,
@@ -56,6 +60,8 @@ typedef enum ListOp
     eDeleteAllNode    = 17,
 }ListOp;
 
+
+/* Function Declaration */
 Node* Create(Node *Head);
 void  Display(Node *Head);
 void  Search(Node *Head, int Element);
@@ -74,6 +80,10 @@ Node* DeleteBeforeNode(Node *Head, int Value);
 Node* DeleteAfterNode(Node *Head, int Value);
 Node* DeleteAllNode(Node *Head);
 
+
+/************************************************************************/
+/* FUNCTION: main()                                                     */
+/************************************************************************/
 int main()
 {
     int Choice, Element, Pos, Value;
@@ -233,6 +243,9 @@ int main()
 }
 
 
+/************************************************************************/
+/* FUNCTION: Node* Create(Node *Head)                                   */
+/************************************************************************/
 Node* Create(Node *Head)
 {
     int n, data;
@@ -265,6 +278,9 @@ Node* Create(Node *Head)
 }
 
 
+/************************************************************************/
+/* FUNCTION: void Display(Node *Head)                                   */
+/************************************************************************/
 void Display(Node *Head)
 {
     if(Head == NULL)
@@ -284,6 +300,9 @@ void Display(Node *Head)
 }
 
 
+/************************************************************************/
+/* FUNCTION: void Search(Node *Head, int Element)                       */
+/************************************************************************/
 void Search(Node *Head, int Element)
 {
     if(Head == NULL)
@@ -306,6 +325,9 @@ void Search(Node *Head, int Element)
 }
 
 
+/************************************************************************/
+/* FUNCTION: Node* Sort(Node *Head)                                     */
+/************************************************************************/
 Node* Sort(Node *Head)
 {
     if(Head == NULL)
@@ -334,6 +356,9 @@ Node* Sort(Node *Head)
 }
 
 
+/************************************************************************/
+/* FUNCTION: Node* Reverse(Node *Head)                                  */
+/************************************************************************/
 Node* Reverse(Node *Head)
 {
     if(Head == NULL)
@@ -342,10 +367,27 @@ Node* Reverse(Node *Head)
         return Head;
     } 
     
+    Node *prev, *curr, *next;
+    prev = NULL;
+    curr = Head;
+    next = NULL;
+    
+    while(curr != NULL)
+    {
+        next = curr->Link;
+        curr->Link = prev;
+        prev = curr;
+        curr = next;
+    }
+    Head = prev;    
+
     return Head;
 }
 
 
+/************************************************************************/
+/* FUNCTION: Node* InsertAtBeg(Node *Head, int Element)                 */
+/************************************************************************/
 Node* InsertAtBeg(Node *Head, int Element)
 {
     Node *temp = (Node*) malloc(sizeof(Node));
@@ -364,6 +406,9 @@ Node* InsertAtBeg(Node *Head, int Element)
 }
 
 
+/************************************************************************/
+/* FUNCTION: Node* InsertAtEnd(Node *Head, int Element)                 */
+/************************************************************************/
 Node* InsertAtEnd(Node *Head, int Element)
 {
     if(Head == NULL)
@@ -386,6 +431,9 @@ Node* InsertAtEnd(Node *Head, int Element)
 }
 
 
+/************************************************************************/
+/* FUNCTION: Node* InsertAtPos(Node *Head, int Element, int Pos)        */
+/************************************************************************/
 Node* InsertAtPos(Node *Head, int Element, int Pos)
 {
     if(Head == NULL)
@@ -427,6 +475,9 @@ Node* InsertAtPos(Node *Head, int Element, int Pos)
 }
 
 
+/************************************************************************/
+/* FUNCTION: Node* InsertBeforeNode(Node *Head, int Element, int Value) */
+/************************************************************************/
 Node* InsertBeforeNode(Node *Head, int Element, int Value)
 {
     if(Head == NULL)
@@ -462,6 +513,9 @@ Node* InsertBeforeNode(Node *Head, int Element, int Value)
 }
 
 
+/************************************************************************/
+/* FUNCTION: Node* InsertAfterNode(Node *Head, int Element, int Value)  */
+/************************************************************************/
 Node* InsertAfterNode(Node *Head, int Element, int Value)
 {
     if(Head == NULL)
@@ -490,6 +544,9 @@ Node* InsertAfterNode(Node *Head, int Element, int Value)
 }
 
 
+/************************************************************************/
+/* FUNCTION: Node* DeleteNode(Node *Head, int Value)                    */
+/************************************************************************/
 Node* DeleteNode(Node *Head, int Value)
 {
     if(Head == NULL)
@@ -526,6 +583,9 @@ Node* DeleteNode(Node *Head, int Value)
 }
 
 
+/************************************************************************/
+/* FUNCTION: Node* DeleteAtBeg(Node *Head)                              */
+/************************************************************************/
 Node* DeleteAtBeg(Node *Head)
 {
     if(Head == NULL)
@@ -543,6 +603,9 @@ Node* DeleteAtBeg(Node *Head)
 }
 
 
+/************************************************************************/
+/* FUNCTION: Node* DeleteAtEnd(Node *Head)                              */
+/************************************************************************/
 Node* DeleteAtEnd(Node *Head)
 {
     if(Head == NULL)
@@ -573,6 +636,9 @@ Node* DeleteAtEnd(Node *Head)
 }
 
 
+/************************************************************************/
+/* FUNCTION: Node* DeleteAtPos(Node *Head, int Pos)                     */
+/************************************************************************/
 Node* DeleteAtPos(Node *Head, int Pos)
 {
     if(Head == NULL)
@@ -613,6 +679,9 @@ Node* DeleteAtPos(Node *Head, int Pos)
 }
 
 
+/************************************************************************/
+/* FUNCTION: Node* DeleteBeforeNode(Node *Head, int Value)              */
+/************************************************************************/
 Node* DeleteBeforeNode(Node *Head, int Value)
 {
     if(Head == NULL)
@@ -651,6 +720,9 @@ Node* DeleteBeforeNode(Node *Head, int Value)
 }
 
 
+/************************************************************************/
+/* FUNCTION: Node* DeleteAfterNode(Node *Head, int Value)               */
+/************************************************************************/
 Node* DeleteAfterNode(Node *Head, int Value)
 {
     if(Head == NULL)
@@ -679,6 +751,9 @@ Node* DeleteAfterNode(Node *Head, int Value)
 }
 
 
+/************************************************************************/
+/* FUNCTION: Node* DeleteAllNode(Node *Head)                            */
+/************************************************************************/
 Node* DeleteAllNode(Node *Head)
 {
     if(Head == NULL)
