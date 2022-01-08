@@ -1,3 +1,29 @@
+/****************************************************/
+/*                                                  */
+/*          All Singly Linked List Operations       */
+/*    1. Create                                     */
+/*    2. Display                                    */
+/*    2. Insert                                     */
+/*        2.1. Insert Node at Beginning             */
+/*        2.2. Insert Node at End                   */
+/*        2.3. Insert Node at Position              */
+/*        2.4. Insert After a Node                  */
+/*        2.5. Insert Before a Node                 */
+/*    3. Delete                                     */
+/*        3.1. Delete Node                          */
+/*        3.2. Delete Node at Beginning             */      
+/*        3.3. Delete Node at End                   */
+/*        3.4. Delete Node at Position              */
+/*        3.5. Delete After a Node                  */
+/*        3.6. Delete Before a Node                 */
+/*        3.7. Delete All Nodes                     */
+/*    3. Reverse                                    */
+/*    4. Search                                     */
+/*    5. Sort                                       */
+/*                                                  */
+/****************************************************/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
